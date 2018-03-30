@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.signinserver.dao.LocationDao">
+    <resultMap id="locationInfo" type="com.example.signinserver.domain.Location">
+    </resultMap>
+    <!--添加一个位置-->
+    <insert id="updateLocationById" parameterType="com.example.signinserver.domain.Location">
+        UPDATE tb_location
+        <set>
+            longitude=#{longitude},
+            latitude=#{latitude}
+        </set>
+        WHERE id=#{id}
+    </insert>
+    <!--通过id查找一个位置-->
+    <select id="searchLocationById" parameterType="String" resultMap="locationInfo">
+        SELECT * FROM tb_location
+        WHERE id=#{id}
+    </select>
+    <!-- 获取所有位置 -->
+    <select id="searchAllLocation" resultMap="locationInfo">
+        SELECT  * FROM tb_location
+    </select>
+</mapper>

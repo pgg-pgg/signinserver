@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.signinserver.dao.UserDao">
+    <resultMap id="userInfo" type="com.example.signinserver.domain.User">
+    </resultMap>
+    <!--添加一个用户-->
+    <insert id="insertUser" parameterType="com.example.signinserver.domain.User">
+        INSERT into tb_user
+        (id,password,name,sex,head_icon)
+        VALUES
+        (
+        #{id},
+        #{password},
+        #{name},
+        #{sex},
+        #{head_icon}
+        )
+    </insert>
+    <!--通过id查找一个用户-->
+    <select id="searchUserById" parameterType="String" resultMap="userInfo">
+        SELECT * FROM tb_user
+        WHERE id=#{id}
+    </select>
+</mapper>
